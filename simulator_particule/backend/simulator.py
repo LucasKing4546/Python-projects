@@ -49,6 +49,8 @@ def update_positions(positions, velocities, raindrops, lightning_strikes):
             if abs(positions[i, dim]) >= BOUNDARY:
                 velocities[i, dim] *= -COLLISION_DAMPING
 
+    import random
+
     # Handle collisions between points
     for i in range(len(positions)):
         for j in range(i + 1, len(positions)):
@@ -71,9 +73,9 @@ def update_positions(positions, velocities, raindrops, lightning_strikes):
 
                 # Register raindrop at the collision position
                 raindrops.append({"position": positions[i].copy()})
-
-                # Trigger lightning effect by storing start and end points
-                lightning_strikes.append({"start": positions[i].copy(), "end": positions[j].copy()})
+                if random.randint(0, 9) % 4 == 0:
+                    # Trigger lightning effect by storing start and end points
+                    lightning_strikes.append({"start": positions[i].copy(), "end": positions[j].copy()})
 
 def plot_simulation(num_points):
     positions, velocities = generate_points(num_points)
