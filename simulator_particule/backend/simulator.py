@@ -142,6 +142,7 @@ def plot_simulation(num_points):
         rain_colors = []
         active_raindrops = []
         for drop in raindrops:
+            drop["position"][1] -= RAINDROP_FALL_SPEED # Move raindrop to the side to simulate wind effect
             drop["position"][2] -= RAINDROP_FALL_SPEED  # Move raindrop downwards
             if drop["position"][2] > -BOUNDARY:  # Only keep if still in bounds
                 rain_x.append(drop["position"][0])
