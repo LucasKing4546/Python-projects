@@ -140,7 +140,7 @@ def ant_colony_optimization(coordinates, ants=10, iterations=100, alpha=1, beta=
     best_tour = None
     best_distance = float('inf')
 
-    def probability_matrix(visited):
+    def probability_array(visited):
         probabilities = np.zeros(num_cities)
         for city in range(num_cities):
             if city not in visited:
@@ -154,7 +154,7 @@ def ant_colony_optimization(coordinates, ants=10, iterations=100, alpha=1, beta=
         for _ in range(ants):
             tour = [random.randint(0, num_cities - 1)]
             while len(tour) < num_cities:
-                probs = probability_matrix(tour)
+                probs = probability_array(tour)
                 next_city = np.random.choice(range(num_cities), p=probs)
                 tour.append(next_city)
             all_tours.append((tour, calculate_distance(tour, coordinates)))
