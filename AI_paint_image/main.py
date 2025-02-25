@@ -1,13 +1,7 @@
 # prompt: use the above network to identify a number uploaded by the user
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torchvision import datasets, transforms
-from google.colab import files
+from network import *
 from PIL import Image
-import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -27,9 +21,8 @@ def preprocess_image(image_path):
     tensor = transforms.Normalize((0.1307,), (0.3081,))(tensor)
     return tensor
 
-# Upload the image file
-uploaded = files.upload()
-image_path = list(uploaded.keys())[0]
+# Get the path of the image file
+image_path = r"C:\Git\Python-projects\AI_paint_image\image.png"
 
 # Preprocess the uploaded image
 image_tensor = preprocess_image(image_path)
